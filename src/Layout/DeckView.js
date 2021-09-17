@@ -22,7 +22,7 @@ function DeckView({deck, setDeck, setCards, cards}) {
         }
         getDeck()
         
-    }, [deckId])
+    }, [deckId, setCards, setDeck])
 
     async function deleteCardHandler(cardId) {
         try {

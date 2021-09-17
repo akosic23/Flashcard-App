@@ -16,7 +16,7 @@ function Cards({decks, setDecks}) {
         return() => {
           abortController.abort();
         };
-      }, [numOfDecks]);
+      },);
 
     async function loadDecks() {
         try {

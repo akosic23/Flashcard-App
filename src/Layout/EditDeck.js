@@ -22,7 +22,7 @@ function EditDeck({ deck, setDeck }) {
         getDeck()
         
         
-    }, [deckId])
+    }, [deckId, setDeck])
 
     const handleChange = ({target}) => {
         setDeck({

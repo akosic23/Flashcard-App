@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { useHistory, useParams, Link } from "react-router-dom"
-import { readDeck, readCard, createCard } from "../utils/api/index"
+import { readDeck, readCard } from "../utils/api/index"
 import FormComponent from "./FormComponent";
 
 function EditCard ({ deck, setDeck, cards, setCards}) {
@@ -21,7 +21,7 @@ function EditCard ({ deck, setDeck, cards, setCards}) {
             }
         }
         getDeck()    
-    }, [deckId])
+    }, [deckId, setDeck])
 
     useEffect(() => {
         const abortController = new AbortController();
@@ -37,7 +37,7 @@ function EditCard ({ deck, setDeck, cards, setCards}) {
             }
         }
         getDeck()   
-    }, [deckId])
+    }, [cardsId, deckId, setCards])
 
     return (
         <div>

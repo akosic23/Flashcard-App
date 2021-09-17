@@ -1,5 +1,5 @@
 import React from "react";
-import { createCard, readDeck, updateCard } from "../utils/api/index"
+import { createCard, updateCard } from "../utils/api/index"
 
 function FormComponent({deck, deckId, cards, setCards, type, history}) {
 

@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
-import { useHistory, useParams, Link } from "react-router-dom"
-import { readDeck, createCard} from "../utils/api/index"
+import { useHistory, useParams } from "react-router-dom"
+import { readDeck} from "../utils/api/index"
 import FormComponent from "./FormComponent";
 
 function AddCard({deck, setDeck, cards, setCards}) {
@@ -23,7 +23,7 @@ function AddCard({deck, setDeck, cards, setCards}) {
         getDeck()
         
         
-    }, [deckId])
+    }, [deckId, setDeck])
 
     return (
         <div>
