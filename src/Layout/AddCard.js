@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import { useHistory, useParams, Link } from "react-router-dom"
 import { readDeck, createCard} from "../utils/api/index"
+import FormComponent from "./FormComponent";
 
 function AddCard({deck, setDeck, cards, setCards}) {
     const history = useHistory();
@@ -24,28 +25,6 @@ function AddCard({deck, setDeck, cards, setCards}) {
         
     }, [deckId])
 
-    const handleChange = ({target}) => {
-        setCards({
-            ...cards, [target.name]: target.value,
-        })
-    }
-
-    function handleSave(event) {
-        event.preventDefault();
-        async function updateCards() {
-            await createCard(deckId, cards)
-        }
-        updateCards();
-        setCards({
-            front:"",
-            back:"",
-            deckId: deckId
-        })
-    }
-    function handleDone() {
-        history.push(`/decks/${deck.id}`)
-    }
-
     return (
         <div>
         <nav aria-label="breadcrumb">
@@ -55,36 +34,7 @@ function AddCard({deck, setDeck, cards, setCards}) {
           <li className="breadcrumb-item active" aria-current="page">Add Card</li>
         </ol>
       </nav>
-            <div>
-            <form>
-                <div className= "form-group">
-                    <label className="form-label" htmlFor="name">Front</label>
-                        <textarea
-                        type="text"
-                        className="form-control"
-                        id="front"
-                        placeholder="Front side of card"
-                        required
-                        name="front"
-                        onChange={handleChange}
-                        value={cards.front}/>
-                </div>
-                <div className="form-group">
-                    <label className="form-label" htmlFor="description">Back</label>
-                        <textarea
-                        type="text"
-                        className="form-control input-lg"
-                        id="back"
-                        placeholder="Back side of card"
-                        required
-                        name="back"
-                        onChange={handleChange}
-                        value={cards.back}/>
-                </div>
-                <button type="submit" className="btn btn-secondary" onClick={handleDone}>Done</button>
-                <button type="submit" className="btn btn-primary" onClick={handleSave}>Save</button>
-            </form>
-            </div>
+            <FormComponent cards={cards} deck={deck} deckId={deckId} setCards={setCards} setDeck={setDeck} history={history} type="addCard" />
         </div>
     )
 }

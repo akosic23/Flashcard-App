@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useHistory, useParams, Link } from "react-router-dom"
 import { readDeck, deleteCard } from "../utils/api/index"
 
-
 function DeckView({deck, setDeck, setCards, cards}) {
     const {deckId} = useParams();
     const history = useHistory();
@@ -42,25 +41,29 @@ function DeckView({deck, setDeck, setCards, cards}) {
         }
       }
 
-    const listOfCards = cards.map(card => {
-        return (
-            <div className="card bg-light">
-                <div className="card-body">
-                    <h6 className="card-subtitle">Front</h6>
-                    <p className="card-text text-muted">{card.front}</p>
-                    <hr/>
-                    <h6 className="card-subtitle">Back</h6>
-                    <p className="card=text text-muted">{card.back}</p>
+    let listOfCards
+
+    if (Array.isArray(cards)) {
+        listOfCards = cards.map(card => {
+            return (
+                <div className="card bg-light" key={card.id}>
+                    <div className="card-body">
+                        <h6 className="card-subtitle">Front</h6>
+                        <p className="card-text text-muted">{card.front}</p>
+                        <hr/>
+                        <h6 className="card-subtitle">Back</h6>
+                        <p className="card=text text-muted">{card.back}</p>
+                    </div>
+                    <div>
+                        <Link to={`/decks/${deckId}/cards/${card.id}/edit`}>
+                            <button className="btn btn-secondary m-3" type="button">Edit</button>
+                        </Link>
+                            <button className="btn btn-danger" type="button" onClick={()=> deleteCardHandler(card.id)}>Delete</button>
+                    </div>
                 </div>
-                <div>
-                    <Link to={`/decks/${deckId}/cards/${card.id}/edit`}>
-                        <button className="btn btn-secondary m-3" type="button">Edit</button>
-                    </Link>
-                        <button className="btn btn-danger" type="button" onClick={()=> deleteCardHandler(card.id)}>Delete</button>
-                </div>
-            </div>
-        )
-    })
+            )
+        })
+    }
 
     return (
         <div>

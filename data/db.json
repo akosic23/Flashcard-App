@@ -9,13 +9,23 @@
       "name": "React Router",
       "description": "React Router is a collection of navigational components that compose declaratively with your application.",
       "id": 2
+    },
+    {
+      "name": "np",
+      "description": "nnnn",
+      "id": 3
+    },
+    {
+      "name": "das",
+      "description": "ddd",
+      "id": 4
     }
   ],
   "cards": [
     {
       "id": 1,
       "front": "Differentiate between Real DOM and Virtual DOM.",
-      "back": "Virtual DOM updates are faster but do not directly update the HTML",
+      "back": "Virtual DOM updates are faster but do not directly update the HT",
       "deckId": 1
     },
     {
@@ -48,6 +58,30 @@
       "back": "b",
       "deckId": 1,
       "id": 7
+    },
+    {
+      "front": "dasdasd",
+      "back": "adsasdasd",
+      "deckId": 4,
+      "id": 8
+    },
+    {
+      "0": {
+        "front": "What path will match the follow Route?\n<Route>\n  <NotFound />\n</Route>",
+        "back": "All paths. A route with no path matches all URL's",
+        "deckId": 2,
+        "id": 4
+      },
+      "1": {
+        "front": "What does <Switch> do?",
+        "back": "Renders the first matching child <Route> ",
+        "deckId": 2,
+        "id": 5
+      },
+      "back": "oihasfpa",
+      "front": "sladnhaoid",
+      "deckId": 2,
+      "id": 9
     }
   ]
 }

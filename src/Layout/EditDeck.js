@@ -32,7 +32,7 @@ function EditDeck({ deck, setDeck }) {
 
     async function handleSubmit(event) {
         event.preventDefault();
-        const response = await updateDeck(deck)
+        await updateDeck(deck)
         history.push(`/decks/${deck.id}`)
     }
 

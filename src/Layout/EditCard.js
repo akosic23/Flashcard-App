@@ -1,10 +1,11 @@
 import React, { useEffect } from "react"
-import { useParams, useHistory, Link } from "react-router-dom"
-import { readDeck, updateCard, readCard } from "../utils/api/index"
+import { useHistory, useParams, Link } from "react-router-dom"
+import { readDeck, readCard, createCard } from "../utils/api/index"
+import FormComponent from "./FormComponent";
 
 function EditCard ({ deck, setDeck, cards, setCards}) {
-    const { deckId, cardsId } = useParams();
     const history = useHistory();
+    const { deckId, cardsId } = useParams();
 
     useEffect(() => {
         const abortController = new AbortController();
@@ -19,8 +20,7 @@ function EditCard ({ deck, setDeck, cards, setCards}) {
                 }
             }
         }
-        getDeck()
-        
+        getDeck()    
     }, [deckId])
 
     useEffect(() => {
@@ -36,27 +36,8 @@ function EditCard ({ deck, setDeck, cards, setCards}) {
                 }
             }
         }
-        getDeck()
-        
-        
+        getDeck()   
     }, [deckId])
-
-    const handleChange = ({target}) => {
-        setCards({
-            ...cards, [target.name]: target.value,
-        })
-    }
-
-    async function handleSubmit(event) {
-        event.preventDefault();
-        const response = await updateCard(cards)
-        history.push(`/decks/${deck.id}`)
-    }
-
-    function handleCancel(event) {
-        event.preventDefault();
-        history.push(`/decks/${deck.id}`)
-    }
 
     return (
         <div>
@@ -64,35 +45,7 @@ function EditCard ({ deck, setDeck, cards, setCards}) {
             <span>{" "}/{" "}</span>
             <Link to={`/decks/${deckId}`}>{deck.name}</Link>
             <span>{" "}/{" "}Edit Card {cardsId}</span>
-            <h1>{deck.name}: Add Card</h1>
-            <div>
-                <form>
-                    <div className= "form-group">
-                    <label className="form-label" htmlFor="name">Name</label>
-                        <textarea
-                        type="text"
-                        className="form-control"
-                        id="front"
-                        placeholder={cards.front}
-                        name="front"
-                        onChange={handleChange}
-                        value={cards.front}/>
-                    </div>
-                    <div className="form-group">
-                    <label className="form-label" htmlFor="description">Description</label>
-                        <textarea
-                        type="text"
-                        className="form-control input-lg"
-                        id="back"
-                        placeholder={cards.back}
-                        name="back"
-                        onChange={handleChange}
-                        value={cards.back}/>
-            </div>
-                <button type="submit" className="btn btn-secondary" onClick={handleCancel}>Cancel</button>
-                <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
-                </form>
-            </div>
+            <FormComponent cards={cards} cardsId={cardsId} deck={deck} deckId={deckId} setCards={setCards} setDeck={setDeck} history={history} type="editCard"  />
         </div>
     )
 }
